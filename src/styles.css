@@ -50,6 +50,13 @@
     justify-content: center;
 }
 
+.X {
+    color: green;
+}
+.O {
+    color: blue;
+}
+
 /* Idea is that the selection cirlces are always present, but transparent (see select-circle).
     the keyframes slowly change the opacity using rgba */
 @keyframes fade_in {

@@ -1,10 +1,30 @@
 // src/App.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
-import { events } from "./helpers.js";
+import { circleFadeIn, circleFadeOut, makeMark } from "./helpers.js";
 
 function App() {
-  events();
+  const [mark, setMark] = useState("X");
+  const [innerGame, setInnerGame] = useState(Array(9).fill(true)); // empty inner game
+
+  const handleClick = (event, index) => {
+    let element = event.currentTarget;
+    makeMark(mark, element);
+    circleFadeOut(event);
+    setMark(mark == "X" ? "O" : "X"); // swap
+    let newInnerGame = [...innerGame]; // creates a shallow copy
+    newInnerGame[index] = false;
+    setInnerGame(newInnerGame);
+  };
+
+  const handleOver = (event) => {
+    circleFadeIn(event);
+  };
+
+  const handleOut = (event) => {
+    circleFadeOut(event);
+  };
+
 
   return ( // javascript returning what looks like html, this is why we use .jsx 
     <div className="appBody">
@@ -12,15 +32,9 @@ function App() {
             <div id="outer-game">
                 <div className="inner-board">
                   <div className="inner-game">
-                    <div className="select-circle"><div className="markable_square">1</div></div>
-                    <div className="select-circle"><div className="markable_square">2</div></div>
-                    <div className="select-circle"><div className="markable_square">3</div></div>
-                    <div className="select-circle"><div className="markable_square">4</div></div>
-                    <div className="select-circle"><div className="markable_square">5</div></div>
-                    <div className="select-circle"><div className="markable_square">6</div></div>
-                    <div className="select-circle"><div className="markable_square">7</div></div>
-                    <div className="select-circle"><div className="markable_square">8</div></div>
-                    <div className="select-circle"><div className="markable_square">9</div></div>
+                    {innerGame.map((square, index) => ( 
+                      <div className="select-circle" key={index} onClick={innerGame[index] ? (event) => handleClick(event, index) : undefined} onMouseOver={innerGame[index] ? handleOver : undefined} onMouseOut={innerGame[index] ? handleOut : undefined}><div className="markable_square">{index+1}</div></div>
+                    ))}
                   </div>
                 </div>
                 <div className="inner-board">2</div>
