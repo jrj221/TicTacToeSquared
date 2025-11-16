@@ -45,6 +45,7 @@
 .select-circle {
     background: radial-gradient(circle closest-side, rgba(165, 42, 42, .1), rgba(165, 42, 42, 1));
     background-color: rgba(165, 42, 42, 1);
+    transition: background-color 1s ease-in;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +60,12 @@
 
 /* Idea is that the selection cirlces are always present, but transparent (see select-circle).
     the keyframes slowly change the opacity using rgba */
+
+.select-circle:hover {
+    background-color: rgba(165, 42, 42, 0);
+    transition: background-color 0.2s ease-out;
+}
+
 @keyframes fade_in {
     from {background-color: rgba(165, 42, 42, 1);}
     to {background-color: rgba(165, 42, 42, 0);}
