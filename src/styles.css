@@ -1,0 +1,71 @@
+
+.appBody {
+    background-color: #1f1f1f;
+    height: 100vh;
+    width: 100wh;
+    overflow: hidden;
+}
+
+#board {
+    background-color: darkred;
+    margin: auto;
+    border: 7px solid darkred;
+    width: 720px;
+    height: 720px;
+}
+
+#outer-game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(3, 1fr);  /* 3 rows, each 100px tall */
+    gap: 10px; /* spacing between items */
+    width: 720px;
+    height: 720px;
+}
+
+.inner-board {
+    background-color: brown;
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(3, 1fr);  /* 3 rows, each 100px tall */
+    gap: 5px; /* spacing between items */
+    background-color: burlywood;
+    width: 200px;
+    height: 200px;
+}
+
+.select-circle {
+    background: radial-gradient(circle closest-side, rgba(165, 42, 42, .1), rgba(165, 42, 42, 1));
+    background-color: rgba(165, 42, 42, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Idea is that the selection cirlces are always present, but transparent (see select-circle).
+    the keyframes slowly change the opacity using rgba */
+@keyframes fade_in {
+    from {background-color: rgba(165, 42, 42, 1);}
+    to {background-color: rgba(165, 42, 42, 0);}
+}  
+
+@keyframes fade_out {
+    from {background-color: rgba(165, 42, 42, 0);}
+    to { background-color: rgba(165, 42, 42, 1);}
+}
+
+.fade_in {
+    animation: fade_in .5s forwards; /* forwards makes the animation state permanent instead of reverting back at the end of the anim */
+}
+
+.fade_out {
+    animation: fade_out .8s forwards; /* forwards makes the animation state permanent instead of reverting back at the end of the anim */
+}
