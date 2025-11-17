@@ -1,7 +1,7 @@
 // src/App.jsx
 import React, { useState } from 'react';
 import './styles.css';
-import { circleFadeIn, circleFadeOut, makeMark } from "./helpers.js";
+import { makeMark } from "./helpers.js";
 
 function App() {
   const [mark, setMark] = useState("X");
@@ -9,12 +9,11 @@ function App() {
 
   const handleClick = (event, outIndex, innerIndex) => {
     let newOuterGame = outerGame.map((innerGame, i) => {
-        if (i === outIndex) { // is this the innerGame we were in?
+        if (i === outIndex) { // check if this is the innerGame we were in
           let newInnerGame = [...innerGame]; // shallow copy of original
           newInnerGame[innerIndex] = false;
           let element = event.currentTarget;
           makeMark(mark, element);
-          circleFadeOut(event);
           setMark(mark == "X" ? "O" : "X"); // swap
           return newInnerGame;
         }
@@ -22,14 +21,6 @@ function App() {
     });
     setOuterGame(newOuterGame);
   }
-
-  const handleOver = (event) => {
-    circleFadeIn(event);
-  };
-
-  const handleOut = (event) => {
-    circleFadeOut(event);
-  };
 
 
   return ( // javascript returning what looks like html, this is why we use .jsx 
@@ -40,7 +31,7 @@ function App() {
                 <div className="inner-board" key={outIndex}>
                   <div className="inner-game">
                     {innerGame.map((square, innerIndex) => ( 
-                      <div className="select-circle" key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}><div className="markable_square"></div></div>
+                      <div className="unmarked_square" key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}></div>
                     ))}
                   </div>
                 </div>

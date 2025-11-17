@@ -42,10 +42,10 @@
     height: 200px;
 }
 
-.select-circle {
-    background: radial-gradient(circle closest-side, rgba(165, 42, 42, .1), rgba(165, 42, 42, 1));
+.unmarked_square, .marked_square {
+    background: radial-gradient(circle closest-side, rgba(165, 42, 42, 0), rgba(165, 42, 42, 1));
     background-color: rgba(165, 42, 42, 1);
-    transition: background-color 1s ease-in;
+    transition: background-color .7s ease-in;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,6 +54,7 @@
 .X {
     color: green;
 }
+
 .O {
     color: blue;
 }
@@ -61,25 +62,7 @@
 /* Idea is that the selection cirlces are always present, but transparent (see select-circle).
     the keyframes slowly change the opacity using rgba */
 
-.select-circle:hover {
+.unmarked_square:hover {
     background-color: rgba(165, 42, 42, 0);
-    transition: background-color 0.2s ease-out;
-}
-
-@keyframes fade_in {
-    from {background-color: rgba(165, 42, 42, 1);}
-    to {background-color: rgba(165, 42, 42, 0);}
-}  
-
-@keyframes fade_out {
-    from {background-color: rgba(165, 42, 42, 0);}
-    to { background-color: rgba(165, 42, 42, 1);}
-}
-
-.fade_in {
-    animation: fade_in .5s forwards; /* forwards makes the animation state permanent instead of reverting back at the end of the anim */
-}
-
-.fade_out {
-    animation: fade_out .8s forwards; /* forwards makes the animation state permanent instead of reverting back at the end of the anim */
+    transition: background-color 0.1s ease-out;
 }
