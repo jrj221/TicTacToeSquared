@@ -29,7 +29,8 @@ function App() {
             <div id="outer-game">
               {outerGame.map((innerGame, outIndex) => (
                 <div className="inner-board" key={outIndex}>
-                  <div className="inner-game">
+                  <div className="outerMark" id={outIndex + "mark"}></div>
+                  <div className="inner-game" id={outIndex + "game"}>
                     {innerGame.map((square, innerIndex) => ( 
                       <div className="unmarked_square" key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}></div>
                     ))}

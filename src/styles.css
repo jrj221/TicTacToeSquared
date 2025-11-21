@@ -17,13 +17,23 @@
 #outer-game {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: repeat(3, 1fr);  /* 3 rows, each 100px tall */
+    grid-template-rows: repeat(3, 1fr);  /* 3 rows */
     gap: 10px; /* spacing between items */
     width: 720px;
     height: 720px;
 }
 
+.outerMark {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
 .inner-board {
+    position: relative;
     background-color: brown;
     color: white;
     margin: 0;
@@ -40,6 +50,7 @@
     background-color: burlywood;
     width: 200px;
     height: 200px;
+    z-index: 0;
 }
 
 .unmarked_square, .marked_square {
