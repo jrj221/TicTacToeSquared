@@ -13,7 +13,7 @@ function App() {
           let newInnerGame = [...innerGame]; // shallow copy of original
           newInnerGame[innerIndex] = false;
           let element = event.currentTarget;
-          makeMark(mark, element);
+          makeMark(mark, element, outIndex, innerIndex);
           setMark(mark == "X" ? "O" : "X"); // swap
           return newInnerGame;
         }
