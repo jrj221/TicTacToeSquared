@@ -1,32 +1,35 @@
-
 .appBody {
     background-color: #1f1f1f;
     height: 100vh;
-    width: 100wh;
+    width: 100vw; /* corrected from 'wh' to 'vw' */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 50px;
 }
 
 #board {
     background-color: darkred;
     margin: auto;
-    border: 7px solid darkred;
-    width: 720px;
-    height: 720px;
+    border: 6px solid darkred;
+    width: 576px;
+    height: 576px;
 }
 
 #outer-game {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: repeat(3, 1fr);  /* 3 rows */
-    gap: 10px; /* spacing between items */
-    width: 720px;
-    height: 720px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+    width: 576px;
+    height: 576px;
 }
 
 .outerMark {
     position: absolute;
-    width: 230px;
-    height: 230px;
+    width: 184px;
+    height: 184px;
     background-size: contain;
     background-repeat: no-repeat;
     z-index: -1;
@@ -44,12 +47,12 @@
 
 .inner-game {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: repeat(3, 1fr);  /* 3 rows, each 100px tall */
-    gap: 5px; /* spacing between items */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
     background-color: burlywood;
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     z-index: 0;
 }
 
@@ -63,15 +66,12 @@
 }
 
 .X {
-    color: green;
+    color: #EED382;
 }
 
 .O {
-    color: blue;
+    color: #212226;
 }
-
-/* Idea is that the selection cirlces are always present, but transparent (see select-circle).
-    the keyframes slowly change the opacity using rgba */
 
 .unmarked_square:hover {
     background-color: rgba(165, 42, 42, 0);

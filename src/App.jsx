@@ -32,7 +32,7 @@ function App() {
                   <div className="outerMark" id={outIndex + "mark"}></div>
                   <div className="inner-game" id={outIndex + "game"}>
                     {innerGame.map((square, innerIndex) => ( 
-                      <div className="unmarked_square" key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}></div>
+                      <div className="unmarked_square" id={innerIndex} key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}></div>
                     ))}
                   </div>
                 </div>
