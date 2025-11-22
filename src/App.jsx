@@ -25,19 +25,20 @@ function App() {
 
   return ( // javascript returning what looks like html, this is why we use .jsx 
     <div className="appBody">
+      <div id="textBox"><em id="text">Now Playing: X</em></div>
         <div id="board">
-            <div id="outer-game">
-              {outerGame.map((innerGame, outIndex) => (
-                <div className="inner-board" key={outIndex}>
-                  <div className="outerMark" id={outIndex + "mark"}></div>
-                  <div className="inner-game" id={outIndex + "game"}>
-                    {innerGame.map((square, innerIndex) => ( 
-                      <div className="unmarked_square" id={innerIndex} key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}></div>
-                    ))}
-                  </div>
+          <div id="outer-game">
+            {outerGame.map((innerGame, outIndex) => (
+              <div className="inner-board" key={outIndex}>
+                <div className="outerMark" id={outIndex + "mark"}></div>
+                <div className="inner-game" id={outIndex + "game"}>
+                  {innerGame.map((square, innerIndex) => ( 
+                    <div className="unmarked_square" id={innerIndex} key={innerIndex} onClick={innerGame[innerIndex] ? (event) => handleClick(event, outIndex, innerIndex) : undefined}></div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
     </div>
   );

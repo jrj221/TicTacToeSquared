@@ -1,12 +1,22 @@
 .appBody {
-    background-color: #1f1f1f;
+    background-color: #2C3539;
     height: 100vh;
     width: 100vw; /* corrected from 'wh' to 'vw' */
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     align-items: center;
     position: relative;
-    top: 50px;
+}
+
+#textBox {
+    width: 576px;
+    text-align: center;
+    font-size: 30px;
+    height: 40px;
+    color: ivory;
+    position: relative;
+    top: 30px;
 }
 
 #board {

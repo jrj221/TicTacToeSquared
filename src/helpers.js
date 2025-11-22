@@ -7,9 +7,14 @@ export function makeMark(mark, element, outIndex, innerIndex) {
     element.classList.add("marked_square");
     console.log(`${mark} => [${outIndex}][${innerIndex}]`);
     marks_array[outIndex][innerIndex] = mark;
+
+    const text = document.getElementById("text");
+    text.textContent = mark == 'X' ? "Now Playing: O" : "Now Playing: X"
+
     checkInnerWin(outIndex, marks_array[outIndex], innerIndex);
     element.textContent = mark;
 }
+
 
 function checkInnerWin(outIndex, innerArray, innerIndex) {
     for (let i = 0; i < 9; i+=3) {
@@ -28,48 +33,58 @@ function checkInnerWin(outIndex, innerArray, innerIndex) {
     }
 }
 
-function checkOuterWin() {
+
+function checkOuterWin(recentMark) {
     for (let i = 0; i < 9; i+=3) {
         if ((outerArray[i] != null && outerArray[i] == outerArray[i+1]) && outerArray[i+1] == outerArray[i+2]) { // row win
             console.log("BIG ROW WIN")
-            winOuter();          
+            winOuter(recentMark);          
         }
     }
     for (let i = 0; i < 3; i++) {
         // console.log(`${innerArray[i]}, ${innerArray[i+3]}, ${innerArray[i+6]}`)
         if ((outerArray[i] != null && outerArray[i] == outerArray[i+3]) && outerArray[i+3] == outerArray[i+6]) { // row win
             console.log("BIG COLUMN WIN");
-            winOuter();     
+            winOuter(recentMark);     
         }
     }
     if (((outerArray[0] != null && outerArray[0] == outerArray[4]) && outerArray[4] == outerArray[8]) ||
         ((outerArray[6] != null && outerArray[6] == outerArray[4]) && outerArray[4] == outerArray[2])) { // diag win 
             console.log("BIG DIAGONAL WIN");
-            winOuter();   
+            winOuter(recentMark);   
     }
 }
 
 
-
 function winInner(outIndex, innerArray, innerIndex) {
-    outerArray[outIndex] = innerArray[innerIndex];
+    let recentMark = innerArray[innerIndex];
+    outerArray[outIndex] = recentMark;
     const innerGameEl = document.getElementById(outIndex + "game");
     innerGameEl.style.opacity = 0.2;
 
     const innerGameMarkEl = document.getElementById(outIndex + "mark");
     console.log(innerArray[innerIndex]);
-    let imgName = innerArray[innerIndex] == 'X' ? `url("/public/goldX.png")` : `url("/public/blackO.png")`;
+    let imgName = recentMark == 'X' ? `url("/public/goldX.png")` : `url("/public/blackO.png")`;
     innerGameMarkEl.style.backgroundImage = imgName;
     innerGameMarkEl.style.zIndex = 1;  
 
-    checkOuterWin();
+    checkOuterWin(recentMark);
 }
 
-function winOuter() {
+
+function winOuter(winningMark) {
     const board = document.getElementById("board");
     board.style.pointerEvents = "none";
-    board.style.backgroundColor = "#212226";
-    board.style.borderColor = "#212226";
+    board.style.borderColor = winningMark == 'X' ? "#B37542" : "#212226";
+    board.style.backgroundColor = winningMark == 'X' ? "#B37542" : "#212226";
+
+    for (let i = 0; i < 9; i++) {
+        const innerGameEl = document.getElementById(i + "game");
+        innerGameEl.style.opacity = 0.2;
+    }
+
+    const text = document.getElementById("text");
+    text.textContent = winningMark == 'X' ? "Player X Won!" : "Player O Won!"
 }
 
 // 0 1 2
